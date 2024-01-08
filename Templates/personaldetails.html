@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image : url('{% static "images/blue45.jpg" %}');
+            background-size : cover;
+            background-repeat : no-repeat;
+            background-color: #1a1a1a; 
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        table {
+            width: 30%;
+            color: #fff;
+            background-color: #333; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        td:hover {
+            background-color : black;
+        }
+
+        th, td {
+            padding: 18px;
+            text-align: left;
+            border: none; 
+        }
+
+        th {
+            background-color: #4caf50; 
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2c2c2c; 
+        }
+
+        tr:nth-child(odd) {
+            background-color: #333; 
+        }
+
+        h2 {
+            margin-top: 20px; 
+            text-align: center;
+            color: white;
+        }
+        
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 17px;
+            text-align: center; 
+            display: block; 
+            margin-top: 20px; 
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <h2>{{pdetails.StudentName}}</h2>
+        <tr>
+            <td>Address</td>
+            <td>{{pdetails.Address}}</td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td>{{pdetails.Age}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{pdetails.Email}}</td>
+        </tr>
+        <tr>
+            <td>Joining Date</td>
+            <td>{{pdetails.JoiningDate}}</td>
+        </tr>
+        <tr>
+            <td>Qualification</td>
+            <td>{{pdetails.Qualification}}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{pdetails.Gender}}</td>
+        </tr>
+        <tr>
+            <td>Contact Number</td>
+            <td>{{pdetails.MobileNumber}}</td>
+        </tr>
+    </table>
+    <a href="{% url 'submission' %}">go back</a>
+</body>
+</html>

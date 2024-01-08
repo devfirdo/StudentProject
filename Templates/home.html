@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image : url('{% static "images/blue3.jpg" %}');
+            background-size : cover;
+            background-repeat : no-repeat;
+            background-color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+    
+        h1 {
+            margin-top : 20px;
+            text-align: center;
+            color: #fff;
+            
+            font-size: 24px;
+        }
+    
+        form {
+            background-color: #2c2c2c; 
+            color: #fff; 
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            margin: 0 auto; 
+        }
+    
+        table {
+            width: 100%;
+        }
+    
+        td {
+            padding: 8px;
+        }
+    
+        input,
+        select {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #555; 
+            border-radius: 4px;
+            background-color: #333; 
+            color: #fff; 
+        }
+    
+        textarea {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #555; 
+            border-radius: 4px;
+            background-color: #333; 
+            color: #fff; 
+            resize: none;
+        }
+    
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+    
+        input[type="submit"] {
+            background-color: white;
+            font-size : 15px;
+            color: black;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="submit"]:hover {
+            background-color : black;
+            color : white;
+        }
+    
+        #btn {
+            width: 20%;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <h1>Student Registration</h1>
+    <form action="{% url 'submit' %}" method='post'>
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Student Name</td>
+                <td><input type="text" name='sname'></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name='saddress'></textarea></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input type="number" name='sage'></td>
+            </tr>
+            <tr>
+                <td>Email Adress</td>
+                <td><input type="email" name='semail'></td>
+            </tr>
+            <tr>
+                <td>Joining Date</td>
+                <td><input type="date" name='sdate'></td>
+            </tr>
+            <tr>
+                <td>Qualification</td>
+                <td><select name="squalification" id="">select your qualification
+                    <option value="">Select Qualifications</option>
+                    <option value="sslc">SSLC</option>
+                    <option value="plustwo">PLUS TWO</option>
+                    <option value="degree">DEGREE</option>
+                    <option value="masters">MASTERS</option>
+                    <option value="diploma">DIPLOMA</option>
+                    <option value="phd">PHD</option>
+                    <option value="others">Others</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                <input type="radio" name = sgender value='male' id='btn'>Male
+                <br>
+                <input type="radio" name = sgender value='female' id='btn'>Female
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile Number</td>
+                <td><input type="text" name = 'snumber'></td>
+            </tr>
+        </table>
+        <input type="submit" value="Register"> 
+    </form>
+</body>
+</html>

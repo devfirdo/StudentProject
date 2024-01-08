@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image : url('{% static "images/blue5.png" %}');
+            background-size : cover;
+            background-repeat : no-repeat;
+            background-color: #1a1a1a; 
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        form {
+            background-color: #2c2c2c; 
+            color: #fff; 
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            margin: 0 auto; 
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        input,
+        select {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #555; 
+            border-radius: 4px;
+            background-color: #333; 
+            color: #fff; 
+        }
+
+        textarea {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #333; 
+            color: #fff; 
+            resize: none;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: white;
+            font-size: 15px;
+            color: black;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="submit"]:hover {
+            background-color : black;
+            color : white;
+        }
+        #btn {
+            width : 20%;
+        }
+        h1 {
+            color : white;
+            text-align : center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Page</h1>
+    <form action='{% url "update" editdetails.id %}' method='post'>
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Student Name</td>
+                <td><input type="text" name='sname' value="{{editdetails.StudentName}}"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="saddress">{{ editdetails.Address }}</textarea></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input type="number" name='sage'  value="{{editdetails.Age}}"></td>
+            </tr>
+            <tr>
+                <td>Email Adress</td>
+                <td><input type="email" name='semail' value="{{editdetails.Email}}"></td>
+            </tr>
+            <tr>
+                <td>Joining Date</td>
+                <td><input type="date" name='sdate' value="{{ editdetails.JoiningDate|date:'Y-m-d'}}"></td>
+            </tr>
+            <tr>
+                <td>Qualification</td>
+                <td><select name="squalification">
+                    <option value="" {% if editdetails.Qualification == '' %}selected{% endif %}>Qualifications</option>
+                    <option value="sslc" {% if editdetails.Qualification == 'sslc' %}selected{% endif %}>SSLC</option>
+                    <option value="plustwo" {% if editdetails.Qualification == 'plustwo' %}selected{% endif %}>PLUS TWO</option>
+                    <option value="degree" {% if editdetails.Qualification == 'degree' %}selected{% endif %}>DEGREE</option>
+                    <option value="masters" {% if editdetails.Qualification == 'masters' %}selected{% endif %}>MASTERS</option>
+                    <option value="diploma" {% if editdetails.Qualification == 'diploma' %}selected{% endif %}>DIPLOMA</option>
+                    <option value="phd" {% if editdetails.Qualification == 'phd' %}selected{% endif %}>PHD</option>
+                    <option value="others" {% if editdetails.Qualification == 'others' %}selected{% endif %}>Others</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                <input type="radio" name = sgender value='male' {% if editdetails.Gender == 'male' %}checked{% endif %} id='btn'>Male
+                <br>
+                <input type="radio" name = sgender value='female' {% if editdetails.Gender == 'female' %}checked{% endif %} id='btn'>Female
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile Number</td>
+                <td><input type="text" name = 'snumber' value="{{editdetails.MobileNumber}}"></td>
+            </tr>
+        </table> 
+        <td><input type="submit" value='UPDATE'></td>  
+    </form>
+</body>
+</html>
